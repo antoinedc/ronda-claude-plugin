@@ -1,0 +1,26 @@
+{
+  "name": "ronda",
+  "displayName": "ronda",
+  "version": "1.0.0",
+  "description": "Edit existing web apps from a GitHub repository in an isolated sandbox with a live preview, then open a pull request when you are ready.",
+  "author": {
+    "name": "ronda",
+    "email": "contact@useronda.com",
+    "url": "https://useronda.com"
+  },
+  "homepage": "https://useronda.com",
+  "repository": "https://github.com/antoinedc/ronda-claude-plugin",
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://useronda.com/mcp",
+  "supportUrl": "https://useronda.com/support",
+  "privacyPolicyUrl": "https://useronda.com/privacy",
+  "termsOfServiceUrl": "https://useronda.com/terms",
+  "license": "MIT",
+  "keywords": [
+    "web development",
+    "code editing",
+    "github",
+    "pull requests",
+    "live preview"
+  ]
+}
