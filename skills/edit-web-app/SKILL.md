@@ -39,8 +39,8 @@ Do not use it for brand new projects without a repository, for deploying to prod
 - Only call `destroy_session` when the user asks to delete the sandbox. Anything not yet in a pull request is lost.
 - If a tool reports a usage limit, explain the limit in plain words and stop. Do not retry in a loop.
 - If a tool says the connection lacks permission for an action, tell the user they need to reconnect ronda and approve the requested access.
-- If GitHub or the Anthropic key is missing and the user says someone else will set it up (or the account belongs to an AI agent), call `create_setup_link` and share the URL it returns. Tell the user it is a one-time setup link that expires in 24 hours and that the person finishes setup on useronda.com. Do not open it yourself and never ask for a key in chat.
-- If `apply_patch` and `create_file` are not available in this connection, edit with `instruct` instead.
+- If GitHub is not connected and the user says someone else will set it up (or the account belongs to an AI agent), call `create_setup_link` and share the URL it returns. Tell the user it is a one-time setup link that expires in 24 hours and that the person connects GitHub on useronda.com. Do not open it yourself. GitHub is the only thing ronda ever needs from the user here: you are the AI.
+- If `apply_patch` and `create_file` are not available in this connection, this ronda server only allows read-only access: tell the user that editing is not enabled and do not look for another way to change files.
 
 ## When the app will not start because of its settings
 
@@ -80,10 +80,6 @@ When the user asks for options, alternatives or variants of a change:
 - Use `show_choices` when the user should pick among 2 to 5 concrete options, such as which element they meant or which suggestion to start with. Wait for their answer.
 - `show_session_panel` shows the preview, pages, the pull request and the change history with **Undo to here**, which calls `undo_changes`. Call it when the user asks for an overview of the session. If the user undid changes there, read the files again before your next edit. You can also call `undo_changes` yourself when the user asks to go back to an earlier change.
 - If a card is not shown, the same tools still return their data as text: use it to answer.
-
-## Delegating to ronda's hosted agent (optional)
-
-Use `instruct` only when the user wants ronda's own hosted agent to make the edit. It runs on the workspace's own model API key, so it works only after the workspace owner has added a key in ronda. If `instruct` returns a setup link, show it to the user and wait. Then call `get_edit` with `waitSeconds: 20` until the edit is `applied` or `failed` (each call waits for it to finish, so do not call it every few seconds). Pass an `idempotencyKey` so a retry does not repeat the edit.
 
 ## What to report back
 
