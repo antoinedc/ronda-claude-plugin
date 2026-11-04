@@ -1,7 +1,7 @@
 {
   "name": "ronda",
   "displayName": "ronda",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Edit existing web apps from a GitHub repository in an isolated sandbox with a live preview, then open a pull request when you are ready.",
   "author": {
     "name": "ronda",
